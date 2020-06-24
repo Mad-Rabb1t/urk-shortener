@@ -17,7 +17,7 @@ a {
 }
 
 .login-container {
-    background-image: url('../img/login-bg.png');
+    background-image: url("images/login-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
