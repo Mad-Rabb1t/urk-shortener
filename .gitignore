@@ -1,8 +1,0 @@
-.idea/
-.idea_modules/
-*.iml
-
-*.jar
-*.war
-
-target/
