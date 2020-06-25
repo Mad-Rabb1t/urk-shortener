@@ -34,9 +34,15 @@
     display: block;
     margin-bottom: 5px;
 }
+/*
+*temporary solution
+*I use link instead of directory to access the image
+*Actually this url should contain the following:
+*images/short-url-bg.png
+ */
 
 .short-url-container {
-    background-image: url('images/short-url-bg.png');
+    background-image: url('https://i.ibb.co/Qb77sqq/short-url-bg.png');
     height: 90vh;
     width: 100%;
     background-repeat: no-repeat;

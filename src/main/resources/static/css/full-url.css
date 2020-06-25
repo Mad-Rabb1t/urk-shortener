@@ -1,5 +1,13 @@
+/*
+*temporary solution
+*I use link instead of directory to access the image
+*Actually this url should contain the following:
+*images/full-url-bg.png
+ */
+
+
 .full-url-bg-container {
-    background-image: url('images/full-url-bg.png');
+    background-image: url('https://i.ibb.co/LxtV5jG/full-url-bg.png');
     height: 90vh;
     width: 100%;
     background-repeat: no-repeat;

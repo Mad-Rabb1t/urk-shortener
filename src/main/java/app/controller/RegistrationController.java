@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegistrationController {
 
     @GetMapping
-    public String RegistrationHandler(){
+    public String RegistrationHandler() {
         return "registration";
     }
 }

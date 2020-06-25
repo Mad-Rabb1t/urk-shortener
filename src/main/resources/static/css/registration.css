@@ -7,9 +7,14 @@ body {
 a {
     text-decoration: none;
 }
-
+/*
+*temporary solution
+*I use link instead of directory to access the image
+*Actually this url should contain the following:
+*images/login-bg.png
+ */
 .registration-container {
-    background-image: url('images/login-bg.png');
+    background-image: url('https://i.ibb.co/m51ZJ8X/login-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
 }

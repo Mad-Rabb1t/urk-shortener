@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ForgotPasswordController {
 
     @GetMapping
-    public String handler(){
+    public String handler() {
         return "forgot-password";
     }
 }

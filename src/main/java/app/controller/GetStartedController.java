@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class GetStartedController {
 
     @GetMapping
-    public String handler(){
+    public String handler() {
         return "landing";
     }
 }
