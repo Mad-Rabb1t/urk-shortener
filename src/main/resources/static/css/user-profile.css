@@ -12,7 +12,7 @@ body{
 
 .container{
     padding-left: 200px;
-    /*background-image: url("images/white-background.jpg");*/
+    background-image: url("../images/white-background.jpg");
     background-size: cover;
 }
 
