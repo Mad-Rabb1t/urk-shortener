@@ -1,13 +1,5 @@
-/*
-*temporary solution
-*I use link instead of directory to access the image
-*Actually this url should contain the following:
-*images/full-url-bg.png
- */
-
-
 .full-url-bg-container {
-    background-image: url('https://i.ibb.co/LxtV5jG/full-url-bg.png');
+    background-image: url('../images/full-url-bg.png');
     height: 90vh;
     width: 100%;
     background-repeat: no-repeat;
@@ -73,7 +65,7 @@
 .full-url-arrow {
     transform: scale(.8);
     display: none;
-    /* Ð£Ð±Ñ€Ð°Ñ‚ÑŒ Ð´Ð¸ÑÐ¿Ð»ÐµÐ¹, Ð´Ð»Ñ Ð¿Ð¾ÑÐ²Ð»ÐµÐ½Ð¸Ñ ÑÑ‚ÐµÐ»Ð¾Ñ‡ÐµÐº */
+    /* Убрать дисплей, для появления стелочек */
     position: absolute;
     right: 0;
     top: 0;
@@ -110,7 +102,7 @@ td {
 
 thead {
     background-color: #7D91C1;
-    border: .5 solid #7D91C1;
+    border: 5px solid #7D91C1;
 }
 
 th {
@@ -118,7 +110,7 @@ th {
     font-size: 25px;
     color: #FFFFFF;
     padding: 10px 10px;
-    border: .5 solid #7D91C1;
+    border: 5px solid #7D91C1;
 }
 
 

@@ -15,14 +15,9 @@ a {
 .header-link {
     margin-left: 60px;
 }
-/*
-*temporary solution
-*I use link instead of directory to access the image
-*Actually this url should contain the following:
-*images/login-bg.png
- */
+
 .login-container {
-    background-image: url('https://i.ibb.co/m51ZJ8X/login-bg.png');
+    background-image: url('../images/login-bg.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
