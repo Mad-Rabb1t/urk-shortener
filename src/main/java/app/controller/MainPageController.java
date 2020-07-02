@@ -2,7 +2,7 @@ package app.controller;
 
 
 import app.entity.ShortURL;
-import app.service.ConverterService;
+import app.service.ConvertAndSaveService;
 import app.service.GetFullUrlService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +17,10 @@ import java.util.List;
 @RequestMapping("/main")
 public class MainPageController {
 
-    private final ConverterService service;
+    private final ConvertAndSaveService service;
     private final GetFullUrlService urlService;
 
-    public MainPageController(ConverterService service, GetFullUrlService urlService) {
+    public MainPageController(ConvertAndSaveService service, GetFullUrlService urlService) {
         this.service = service;
         this.urlService = urlService;
     }
@@ -30,7 +30,7 @@ public class MainPageController {
 
         List<ShortURL> all = urlService.getAll();
         //The following address is subject to change.
-        model.addAttribute("mapping","http:localhost:9004/short/");
+        model.addAttribute("mapping","http:localhost:9004/short");
         model.addAttribute("urls",all);
         return "main-page";
     }
@@ -39,7 +39,7 @@ public class MainPageController {
     @PostMapping
     public String postHandling(@RequestParam String fullUrl){
         System.out.println(fullUrl);
-        service.save(fullUrl);
+        service.canSave(fullUrl);
         return "success";
     }
 }

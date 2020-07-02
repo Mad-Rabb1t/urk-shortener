@@ -19,7 +19,7 @@ public class ShortURL {
 
     @Column(nullable = false)
     public int numOfVisits;
-    @Column(unique = true)
+    @Column(columnDefinition = "text")
     public String fullURL;
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true, nullable = false)
