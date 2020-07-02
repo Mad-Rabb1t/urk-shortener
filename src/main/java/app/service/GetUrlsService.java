@@ -5,8 +5,9 @@ import app.entity.ShortURL;
 import app.repo.RepoURL;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GetUrlsService {
@@ -17,8 +18,10 @@ public class GetUrlsService {
         this.repo = repo;
     }
 
+    // gets all the urls from db and sorts them from most frequently used to the least.
     public List<ShortURL> getAll() {
-        return repo.findAll();
+        return repo.findAll().stream().sorted(Comparator.comparingLong(ShortURL::getNumOfVisits).reversed())
+                .collect(Collectors.toList());
     }
 
     // is responsible for increasing visit count each time when there is a request to /short/{id}
@@ -28,11 +31,12 @@ public class GetUrlsService {
         repo.saveAndFlush(obj);
     }
 
-    public Optional<String> getFullUrl(String shortUrl) {
-        boolean present = repo.findShortURLByShortURL(shortUrl).isPresent();
-        if (present) {
-            increaseTheVisitCount(shortUrl);
-            return Optional.of(repo.findShortURLByShortURL(shortUrl).get().fullURL);
-        } else return Optional.empty();
+    public boolean doesExistWithThisShortUrl(String shortUrl) {
+        return repo.findShortURLByShortURL(shortUrl).isPresent();
+    }
+
+    public String getFullUrl(String shortUrl) {
+        increaseTheVisitCount(shortUrl);
+        return repo.findShortURLByShortURL(shortUrl).get().fullURL;
     }
 }

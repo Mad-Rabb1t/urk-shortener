@@ -22,5 +22,6 @@ PLEASE NOTE: You need to make the following change
 Inside MainPageController there is a handler with Model.Please adjust the value of the attribute called
 "mapping" to your local server(I mean change port number written there)
 
-
+** Improvement ** The user is redirected to an error page in case of wrong short url
+(url which has not been added to the system)
 
