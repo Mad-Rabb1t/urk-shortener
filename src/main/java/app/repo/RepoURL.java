@@ -11,6 +11,7 @@ public interface RepoURL extends JpaRepository<ShortURL, Long> {
     <S extends ShortURL> S save(S s);
 
     Optional<ShortURL> findShortURLByFullURL(String fullURL);
+
     Optional<ShortURL> findShortURLByShortURL(String fullURL);
 
     List<ShortURL> findAll();

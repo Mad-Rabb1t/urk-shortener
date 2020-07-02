@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
-
+// Done!
 @Service
 public class RequestService {
 //This service makes a request to random.org to get random strings each time for creating unique mapping(for new full url)
