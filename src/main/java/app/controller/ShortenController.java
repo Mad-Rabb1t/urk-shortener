@@ -19,12 +19,6 @@ public class ShortenController {
     }
 
 
-//    @GetMapping("/remove")
-//    public String handler() {
-//        repo.deleteAll();
-//        return "DELETED";
-//    }
-
     @GetMapping(path = "{shortUrl}")
     public RedirectView handler(@PathVariable String shortUrl) {
         //Firstly, we are looking for the data with the passed short url in db, if it exists we redirect the user to

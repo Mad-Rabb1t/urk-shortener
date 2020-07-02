@@ -51,7 +51,8 @@
                 <td th:text="${url.dateOfCreation}"></td>
                 <td th:text="@{{link}/{shortUrl}(shortUrl=${url.shortURL},link=${mapping})}"></td>
                 <td th:text="${url.fullURL}"></td>
-                <td th:text="${url.numOfVisits}"><img class="full-url-arrow" src="/images/full-url-arrow.png" alt="arrow"></td>
+                <td th:text="${url.numOfVisits}"><img class="full-url-arrow" src="/images/full-url-arrow.png"
+                                                      alt="arrow"></td>
             </tr>
             <!--                    <tr>-->
             <!--                        <td>21.06.2020</td>-->

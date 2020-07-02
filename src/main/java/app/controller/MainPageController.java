@@ -37,8 +37,6 @@ public class MainPageController {
 
     @PostMapping
     public String postHandling(@RequestParam String fullUrl) {
-        System.out.println(fullUrl);
-        service.canSave(fullUrl);
-        return "success";
+        return service.canSave(fullUrl) ? "success" : "error-page-406";
     }
 }

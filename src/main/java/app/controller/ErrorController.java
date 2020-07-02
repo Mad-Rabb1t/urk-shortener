@@ -11,6 +11,11 @@ public class ErrorController {
 
     @GetMapping("/not-found")
     public String handleNotFoundException() {
-        return "error-not-found";
+        return "error-page-404";
+    }
+
+    @GetMapping("/forbidden")
+    public String handleForbiddenAction() {
+        return "error-page-406";
     }
 }
