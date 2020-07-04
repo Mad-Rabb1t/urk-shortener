@@ -6,10 +6,8 @@ import app.service.ConvertAndSaveService;
 import app.service.GetUrlsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -17,17 +15,17 @@ import java.util.List;
 @RequestMapping("/main")
 public class MainPageController {
 
-    private final ConvertAndSaveService service;
-    private final GetUrlsService urlService;
+    private final ConvertAndSaveService saveService;
+    private final GetUrlsService getService;
 
     public MainPageController(ConvertAndSaveService service, GetUrlsService urlService) {
-        this.service = service;
-        this.urlService = urlService;
+        this.saveService = service;
+        this.getService = urlService;
     }
 
-    @GetMapping
-    public String handler(Model model) {
-        List<ShortURL> all = urlService.getAll();
+    @GetMapping(path = "/{user_id}")
+    public String handler(@PathVariable long user_id, Model model) {
+        List<ShortURL> all = getService.getAllUrlsByUserId(user_id);
         //The following address is subject to change.
         model.addAttribute("mapping", "http:localhost:9004/short");
         model.addAttribute("urls", all);
@@ -35,8 +33,9 @@ public class MainPageController {
     }
 
 
-    @PostMapping
-    public String postHandling(@RequestParam String fullUrl) {
-        return service.canSave(fullUrl) ? "success" : "error-page-406";
+    @PostMapping(path = "/{user_id}")
+    public RedirectView postHandling(@RequestParam String fullUrl, @PathVariable long user_id) throws NoSuchFieldException {
+        return saveService.canSave(fullUrl, user_id) ? new RedirectView(String.format("%s/%d", "/main", user_id))
+                : new RedirectView("/error/forbidden");
     }
 }

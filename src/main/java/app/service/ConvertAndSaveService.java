@@ -3,35 +3,40 @@ package app.service;
 
 import app.entity.ShortURL;
 import app.repo.RepoURL;
+import app.repo.ZUserRepo;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-// Done!
+// Implemented
 @Service
 public class ConvertAndSaveService {
-
-    private final RepoURL repo;
+    private final RepoURL urlRepo;
+    private final ZUserRepo userRepo;
     private final RequestService reqService;
 
-    public ConvertAndSaveService(RepoURL repo, RequestService reqService) {
-        this.repo = repo;
+    public ConvertAndSaveService(RepoURL repo, ZUserRepo userRepo, RequestService reqService) {
+        this.urlRepo = repo;
+        this.userRepo = userRepo;
         this.reqService = reqService;
     }
 
-    private boolean hasBeenProcessedBefore(String fullUrl) {
-        return repo.findShortURLByFullURL(fullUrl).isPresent();
+    // this method ensures that entered url is unique(has not been created before by this user)
+    private boolean hasBeenProcessedBeforeByUserId(String fullUrl, long user_id) throws NoSuchFieldException {
+        return userRepo.findById(user_id).orElseThrow(NoSuchFieldException::new).getUrls().stream()
+                .anyMatch(existingUrl -> existingUrl.fullURL.equals(fullUrl));
     }
 
     private boolean isShortUrlUnique(String shortUrl) {
-        return !repo.findShortURLByShortURL(shortUrl).isPresent();
+        return !urlRepo.findShortURLByShortURL(shortUrl).isPresent();
     }
 
 
-    public boolean canSave(String fullURL) {
+    // Temporary implementation
+    public boolean canSave(String fullURL, long user_id) throws NoSuchFieldException {
         String randomString;
-        if (hasBeenProcessedBefore(fullURL)) return false;
+        if(hasBeenProcessedBeforeByUserId(fullURL,user_id)) return false;
         while (true) {
             randomString = reqService.autoRandomGenerator();
             if (isShortUrlUnique(randomString)) break;
@@ -42,8 +47,9 @@ public class ConvertAndSaveService {
                 .fullURL(fullURL)
                 .numOfVisits(0)
                 .dateOfCreation(findCurrTime())
+                .user(userRepo.findById(user_id).orElseThrow(NoSuchFieldError::new))
                 .build();
-        repo.save(shorterUrl);
+        urlRepo.save(shorterUrl);
         return true;
     }
 

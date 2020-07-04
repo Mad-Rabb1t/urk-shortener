@@ -16,6 +16,6 @@ public class ErrorController {
 
     @GetMapping("/forbidden")
     public String handleForbiddenAction() {
-        return "error-page-406";
+        return "error-page-403";
     }
 }

@@ -25,3 +25,14 @@ Inside MainPageController there is a handler with Model.Please adjust the value 
 ** Improvement ** The user is redirected to an error page in case of wrong short url
 (url which has not been added to the system)
 
+---------------------------------------------------------------------------------------------------------
+
+04.07.2020      14:00  -----> Relational Database
+
+Relations have been created between user and urls (/main/{user_id})
+Each user can only see urls entered and converted by themselves on the main page.
+
+For now, you need to go to main/{user.id} to see individual user's page/convert urls. However, this will change after
+Spring Security login and registration are implemented(there will be no need to pass user_id through path)
+Each user can add the same url just once. If they try to add the url which they have converted
+before they will be redirect to error page.
