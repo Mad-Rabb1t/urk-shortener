@@ -1,35 +1,31 @@
 package app.entity;
 
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+@Data
 public class ZUserDetails implements UserDetails {
 
-    private final String email;
-    private final String password;
-
-    public ZUserDetails(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
+    private final ZUser user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
     public String getPassword() {
-        return password;
+        return user.password;
     }
 
     @Override
     public String getUsername() {
-        return email;
-    } // we need email to authenticate user
+        return user.email;
+    }
 
     @Override
     public boolean isAccountNonExpired() {

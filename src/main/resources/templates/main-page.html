@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
 
 <head>
-    <meta charset="UTF-8"
-          xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:th="http://www.thymeleaf.com"
-    >
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tinder: full url</title>
+    <title>Main Page</title>
     <link rel="stylesheet" href="/css/user-profile.css">
     <link rel="stylesheet" href="/css/short-url.css">
     <link rel="stylesheet" href="/css/full-url.css">
@@ -35,7 +34,7 @@
     <img class="full-url-img" src="/images/full-url-robot.png" alt="flying robot">
     <div class="full-url-container">
         <h2 class="full-url-title">ENTER YOUR FULL URL</h2>
-        <form method="post" class="full-url-input-container">
+        <form name="f" th:action="@{/main}" method="post" class="full-url-input-container">
             <input class="full-url-input" type="text" placeholder="Enter your URL" name="fullUrl">
             <input type="submit" class="full-url-btn" value="SHORTEN">
         </form>
