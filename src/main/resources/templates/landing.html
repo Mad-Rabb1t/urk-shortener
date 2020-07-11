@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,18 +10,18 @@
 </head>
 
 <body>
-    <form method="post" >
+    <form method="post" th:action="@{/logout}">
     <header class="main-header">
-        <a href="./main-page.html" class="main-header-logo"><img src="/images/iba-tech-logo-white.svg"
+        <a href="" class="main-header-logo"><img src="/images/iba-tech-logo-white.svg"
                 alt="IBA Tech Academy"></a>
         <div class="main-header-wrapper">
             <div class="main-header-profile-wrapper">
                 <div class="main-header-profile-credentials">
                     <span class="main-header-username">Anatolii Safronov</span>
-                    <div class="log-out-block">
+                    <button type="submit" class="log-out-block" value="Log out">
                         <img src="/images/log-out-icon.svg" alt="Log out">
-                        <a href="./index.html" class="log-out-btn">Log out</a>
-                    </div>
+                        <a class="log-out-btn">Log out</a>
+                    </button>
                 </div>
                 <img class="main-header-user-icon" src="/images/user-icon-with-background.svg" alt="User Icon">
             </div>
