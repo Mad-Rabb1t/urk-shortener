@@ -18,7 +18,7 @@ public class ZUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        ZUser curr_user = repo.findByEmail(email).orElseThrow(RuntimeException::new);
+        ZUser curr_user = repo.findZUserByEmail(email).orElseThrow(RuntimeException::new);
         return new ZUserDetails(curr_user);
     }
 }

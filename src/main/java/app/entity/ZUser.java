@@ -2,10 +2,7 @@ package app.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,13 +12,17 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class ZUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long user_id;
 
+    @Column(nullable = false)
     public String username;
+    @Column(nullable = false)
     public String password;
+    @Column(nullable = false, unique = true)
     public String email;
 
 

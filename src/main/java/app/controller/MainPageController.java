@@ -31,7 +31,7 @@ public class MainPageController {
         long user_id = curr_user.getUser().getUser_id();
         List<ShortURL> all = getService.getAllUrlsByUserId(user_id);
         //The following address is subject to change.
-        model.addAttribute("mapping", "http:localhost:9004/short");
+        model.addAttribute("mapping", "http:localhost:8080/short");
         model.addAttribute("urls", all);
         return "main-page";
     }
