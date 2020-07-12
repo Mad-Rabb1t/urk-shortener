@@ -4,8 +4,9 @@ import app.entity.ZUser;
 import app.repo.ZUserRepo;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
-@Configuration
+@Service
 public class RegistrationService {
     private final ZUserRepo userRepo;
     private final PasswordEncoder encoder;
@@ -20,9 +21,7 @@ public class RegistrationService {
     }
 
     public boolean checkEmailUniqueness(ZUser user) {
-        return userRepo.findAll().stream()
-                .noneMatch(us -> us.email.equals(user.email)
-                );
+        return !userRepo.findZUserByEmail(user.email).isPresent();
     }
 
     public boolean canSave(ZUser user) {
