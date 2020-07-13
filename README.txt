@@ -44,3 +44,9 @@ In my opinion, it did not work because of index.html as it did not include thyme
 could not be forwarded to "/login" properly .
 I added the following line to index.html:
 <form name="f" method="post" th:action="@{/login}" class="login-section-container-form">
+
+---------------------------------------------------------------------------------------------------------
+13.07.2020       17:00  ------> Small change
+
+In order the application to work properly,please modify String root in the following address:
+app->entity->ApplicationDetails

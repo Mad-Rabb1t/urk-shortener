@@ -1,6 +1,7 @@
 package app.controller;
 
 
+import app.entity.ApplicationDetails;
 import app.entity.ShortURL;
 import app.entity.ZUserDetails;
 import app.service.ConvertAndSaveService;
@@ -19,10 +20,12 @@ public class MainPageController {
 
     private final ConvertAndSaveService saveService;
     private final GetUrlsService getService;
+    private final ApplicationDetails applicationDetails;
 
-    public MainPageController(ConvertAndSaveService service, GetUrlsService urlService) {
+    public MainPageController(ConvertAndSaveService service, GetUrlsService urlService, ApplicationDetails applicationDetails) {
         this.saveService = service;
         this.getService = urlService;
+        this.applicationDetails = applicationDetails;
     }
 
     @GetMapping()
@@ -31,7 +34,8 @@ public class MainPageController {
         long user_id = curr_user.getUser().getUser_id();
         List<ShortURL> all = getService.getAllUrlsByUserId(user_id);
         //The following address is subject to change.
-        model.addAttribute("mapping", "https://spring-final-project-url.herokuapp.com/short");
+        String shortUrl = String.format("%s/%s", applicationDetails.getRoot(), "sh");
+        model.addAttribute("mapping", shortUrl);
         model.addAttribute("urls", all);
         String username = curr_user.getUser().getUsername();
         model.addAttribute("username", username);
