@@ -24,8 +24,6 @@ public class ZUserCreationService {
         user1.email = "random@mail.ru";
         user1.username = "random@mail.ru";
         user1.password = enc.encode("123");
-        user2.email = "veryrandom@mail.ru";
-        user2.password = enc.encode("234");
 
         repo.saveAll(Arrays.asList(
                 user1, user2
