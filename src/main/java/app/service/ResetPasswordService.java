@@ -47,7 +47,7 @@ public class ResetPasswordService {
                 .user(userRepo.findZUserByEmail(email).orElseThrow(NullPointerException::new))
                 .build();
         passRepo.save(builder);
-        return String.format("http://localhost:9004/reset/%s", token);
+        return String.format("https://spring-final-project-url.herokuapp.com/reset/%s", token);
     }
 
     public boolean isTokenExpired(String token) {
