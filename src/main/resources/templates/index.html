@@ -21,6 +21,9 @@
             <h1 class="login-section-container-title">Welcome Back!</h1>
             <p class="login-section-container-description">To keep connected with us please login with personal
                     information by email address and password</p>
+            <p th:if="${error}" class="error" style="color: red; font-size: 20px;">
+                Wrong email or password! Make sure credentials are correct or click "Forgot password"
+                if you can't log in</p>
 
             <form name="f" method="post" th:action="@{/login}" class="login-section-container-form">
                 <!--                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
