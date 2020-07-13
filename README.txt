@@ -36,3 +36,11 @@ For now, you need to go to main/{user.id} to see individual user's page/convert 
 Spring Security login and registration are implemented(there will be no need to pass user_id through path)
 Each user can add the same url just once. If they try to add the url which they have converted
 before they will be redirect to error page.
+
+---------------------------------------------------------------------------------------------------------
+10.07.2020       12:00  ------> Custom Login Page is working now
+
+In my opinion, it did not work because of index.html as it did not include thymeleaf and therefore, post method
+could not be forwarded to "/login" properly .
+I added the following line to index.html:
+<form name="f" method="post" th:action="@{/login}" class="login-section-container-form">
