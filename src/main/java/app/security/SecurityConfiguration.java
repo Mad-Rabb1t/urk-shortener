@@ -37,6 +37,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/start", true)
                 .failureUrl("/login-error")
                 .and()
+                .rememberMe()
+                .rememberMeParameter("remember-me")
+                .tokenValiditySeconds(864000) //user stays logged in for 10 days
+                .and()
                 .logout()
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
