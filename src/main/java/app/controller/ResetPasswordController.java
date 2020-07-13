@@ -14,8 +14,8 @@ public class ResetPasswordController {
         this.resetPasswordService = resetPass;
     }
 
-    @GetMapping(path = "/{token}")
-    public String handle(@PathVariable String token, Model model) {
+    @GetMapping()
+    public String handle(@RequestParam String token, Model model) {
         model.addAttribute("token", token);
         resetPasswordService.deleteIfExpired();
         return resetPasswordService.canResetToken(token) ? "new-password" : "error-page-404";
