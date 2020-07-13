@@ -2,10 +2,11 @@ package app.service;
 
 import app.entity.ZUser;
 import app.repo.ZUserRepo;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
+@Log4j2
 @Service
 public class RegistrationService {
     private final ZUserRepo userRepo;
