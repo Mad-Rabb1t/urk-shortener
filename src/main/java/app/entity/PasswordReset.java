@@ -1,5 +1,6 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +24,7 @@ public class PasswordReset {
     @Column(nullable = false)
     public String expirationDate;
 
-
+    @JsonBackReference
     @OneToOne(targetEntity = ZUser.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     private ZUser user;

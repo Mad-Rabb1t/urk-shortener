@@ -23,6 +23,7 @@ public class ShortenController {
     public RedirectView handler(@PathVariable String shortUrl) {
         //Firstly, we are looking for the data with the passed short url in db, if it exists we redirect the user to
         // that url if not user is redirected to an error page.
+
         return service.doesExistWithThisShortUrl(shortUrl) ? new RedirectView(service.getFullUrl(shortUrl))
                 : new RedirectView("/error/not-found");
 

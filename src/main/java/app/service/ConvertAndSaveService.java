@@ -35,6 +35,7 @@ public class ConvertAndSaveService {
 
     // Temporary implementation
     public boolean canSave(String fullURL, long user_id) throws NoSuchFieldException {
+        if(!isValid(fullURL)) return false;
         String randomString;
         if(hasBeenProcessedBeforeByUserId(fullURL,user_id)) return false;
         while (true) {
@@ -53,10 +54,16 @@ public class ConvertAndSaveService {
         return true;
     }
 
+    public boolean isValid(String fullURL) {
+       return fullURL.chars().filter(c->c!=' ').count()>=1;
+    }
+
     private String findCurrTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         return formatter.format(LocalDate.now());
     }
+
+
 }
 
 
