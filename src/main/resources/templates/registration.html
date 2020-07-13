@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +12,7 @@
 <body>
     <div class="registration-container">
         <header class="header">
-            <a href="./registration.html" class="header-link"><img src="/images/iba-login-logo.png"
+            <a href="/register" class="header-link"><img src="/images/iba-login-logo.png"
                     alt="IBA Tech Academy"></a>
         </header>
 
@@ -20,32 +21,41 @@
             <div class="registration-section-container">
                 <h1 class="registration-section-container-title">Create an account</h1>
                 <p class="registration-section-container-description">Create your account, it takes less than a minute.
-                    If you already have an account - <a href="./index.html"
+                    If you already have an account - <a href="/login"
                         class="registration-section-container-description-link">Login</a></p>
-                <form action="" class="registration-section-container-form">
+
+                <p th:if="${correctPassword != null && !correctEmail}" style="color: red; font-size: 24px; margin-top: -25px">
+                    Email is already used
+                </p>
+                <p th:if="${correctPassword != null && !correctPassword}" style="color: red; font-size: 24px; margin-top: -25px">
+                    Wrong password confirmation
+                </p>
+
+
+                <form method="post" class="registration-section-container-form">
                     <div class="registration-section-container-form-input-wrapper">
                         <img src="/images/user-icon.svg" alt="User Icon">
                         <label for="full-name"></label>
-                        <input class="registration-section-container-form-input" id="full-name" placeholder="Full name"
-                            type="text">
+                        <input required autofocus class="registration-section-container-form-input" id="full-name" placeholder="Full name"
+                            type="text" name="username">
                     </div>
                     <div class="registration-section-container-form-input-wrapper">
                         <img src="/images/mail-icon.svg" alt="User Icon">
                         <label for="email"></label>
-                        <input class="registration-section-container-form-input" id="email" placeholder="Email address"
-                            type="email">
+                        <input required class="registration-section-container-form-input" id="email" placeholder="Email address"
+                            type="email" name="email">
                     </div>
                     <div class="registration-section-container-form-input-wrapper">
                         <img src="/images/lock-icon.svg" alt="User Icon">
                         <label for="password"></label>
-                        <input class="registration-section-container-form-input" id="password" placeholder="Password"
-                            type="password">
+                        <input required class="registration-section-container-form-input" id="password" placeholder="Password"
+                            type="password" name="password">
                     </div>
                     <div class="registration-section-container-form-input-wrapper mb0">
                         <img src="/images/lock-icon.svg" alt="User Icon">
                         <label for="confirm-password"></label>
-                        <input class="registration-section-container-form-input" id="confirm-password"
-                            placeholder="Confirm Password" type="password">
+                        <input required class="registration-section-container-form-input" id="confirm-password"
+                            placeholder="Confirm Password" type="password" name="passwordConfirmation">
                     </div>
                     <input type="submit" value="Create account" class="registration-section-container-form-submit">
                 </form>
