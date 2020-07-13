@@ -33,6 +33,8 @@ public class MainPageController {
         //The following address is subject to change.
         model.addAttribute("mapping", "http:localhost:8080/short");
         model.addAttribute("urls", all);
+        String username = curr_user.getUser().getUsername();
+        model.addAttribute("username", username);
         return "main-page";
     }
 
