@@ -24,10 +24,14 @@ public class ZUserCreationService {
         user1.email = "random@mail.ru";
         user1.username = "random@mail.ru";
         user1.password = enc.encode("123");
+        user2.email = "r3xf0x@yandex.ru";
+        user2.username = "Alex";
+        user2.password = enc.encode("123");
 
         repo.saveAll(Arrays.asList(
                 user1, user2
         ));
+
 
     }
 }
