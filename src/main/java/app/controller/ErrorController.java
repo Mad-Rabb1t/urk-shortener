@@ -18,4 +18,9 @@ public class ErrorController {
     public String handleForbiddenAction() {
         return "error-page-403";
     }
+
+    @GetMapping("/bad-request")
+    public String handleBadRequest() {
+        return "error-page-400";
+    }
 }

@@ -1,11 +1,13 @@
-To start the application, type the following in the browser:http://localhost:8080/login
-The following mappings have been implemented(they are subject to change and have been created just for test purposes):
+To start the application, type the following in the browser:http://localhost:PORT/login
+The following mappings have been implemented:
 /login
 /register
 /forgot
 /main
 /start
-
+/reset
+/sh
+*** IMPORTANT ***
 To make the application work you are required to add the following environment variables:
 For more details see: application.properties
 #1   PORT
@@ -13,18 +15,31 @@ For more details see: application.properties
 #2   USERNAME
 #3   PASSWORD
 #4   URL
+------------------------------------------------------------------------------------------------------------------------
+PLEASE NOTE: You need to make the following change to the application !!!
+
+In order the application to work properly,please modify String root in the following address:
+app->entity->ApplicationDetails
+
+------------------------------------------------------------------------------------------------------------------------
 
 Now you can enter your url(/main) and convert your url to shorter one.
 ** Visit count increments when request to short url is made **
+** The user is redirected to an error page in case of wrong short url
+(url which has not been added to the system) **
+** You can reset your password if you have an access to your registration e-mail **
 
-PLEASE NOTE: You need to make the following change
+GitHub link to Application: https://github.com/Mad-Rabb1t/url-shortener
+Link to HerokuApp: https://iba-short-url.herokuapp.com/login
 
-Inside MainPageController there is a handler with Model.Please adjust the value of the attribute called
-"mapping" to your local server(I mean change port number written there)
+User credentials on HerokuApp(for test purposes):
+Email: random_user@mail.ru
+Password: 22
 
-** Improvement ** The user is redirected to an error page in case of wrong short url
-(url which has not been added to the system)
 
+
+
+Development stages of the application
 ---------------------------------------------------------------------------------------------------------
 
 04.07.2020      14:00  -----> Relational Database
@@ -44,3 +59,13 @@ In my opinion, it did not work because of index.html as it did not include thyme
 could not be forwarded to "/login" properly .
 I added the following line to index.html:
 <form name="f" method="post" th:action="@{/login}" class="login-section-container-form">
+
+---------------------------------------------------------------------------------------------------------
+14.07.2020       10:40  ------> Minor changes
+
+#In order the application to work properly,please modify String root in the following address:
+app->entity->ApplicationDetails
+
+#If user enters invalid url into converter, they will get an error page and
+their request will not be processed (saved into db)
+Invalid URL is the string without protocols(http://,https://,ftp://) and proper URL syntax.

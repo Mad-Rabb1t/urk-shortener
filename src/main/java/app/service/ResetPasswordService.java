@@ -1,5 +1,6 @@
 package app.service;
 
+import app.entity.ApplicationDetails;
 import app.entity.PasswordReset;
 import app.entity.ZUser;
 import app.repo.ResetPassRepo;
@@ -22,13 +23,15 @@ public class ResetPasswordService {
     private final ZUserRepo userRepo;
     private final ResetPassRepo passRepo;
     private final PasswordEncoder encoder;
+    private final ApplicationDetails applicationDetails;
 
 
-    public ResetPasswordService(JavaMailSender sender, ZUserRepo repo, ResetPassRepo passRepo, PasswordEncoder encoder) {
+    public ResetPasswordService(JavaMailSender sender, ZUserRepo repo, ResetPassRepo passRepo, PasswordEncoder encoder, ApplicationDetails applicationDetails) {
         this.sender = sender;
         this.userRepo = repo;
         this.passRepo = passRepo;
         this.encoder = encoder;
+        this.applicationDetails = applicationDetails;
     }
 
     public boolean isPresentEmail(String email) {
@@ -47,7 +50,7 @@ public class ResetPasswordService {
                 .user(userRepo.findZUserByEmail(email).orElseThrow(NullPointerException::new))
                 .build();
         passRepo.save(builder);
-        return String.format("http://localhost:8080/reset?token=%s", token);
+        return String.format("%s/reset?token=%s", applicationDetails.getRoot(), token);
     }
 
     public boolean isTokenExpired(String token) {
