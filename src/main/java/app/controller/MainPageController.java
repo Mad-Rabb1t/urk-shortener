@@ -46,7 +46,7 @@ public class MainPageController {
     @PostMapping()
     public RedirectView postHandling(@RequestParam String fullUrl, Authentication auth)
             throws NoSuchFieldException {
-        if (!saveService.isValid(fullUrl)) return new RedirectView("/main");
+        if (!saveService.isValidUrl(fullUrl)) return new RedirectView("/error/bad-request");
         ZUserDetails curr_user = (ZUserDetails) auth.getPrincipal();
         long user_id = curr_user.getUser().getUser_id();
         return saveService.canSave(fullUrl, user_id) ? new RedirectView("/main")

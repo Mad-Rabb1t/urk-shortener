@@ -4,12 +4,17 @@ package app.service;
 import app.entity.ShortURL;
 import app.repo.RepoURL;
 import app.repo.ZUserRepo;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 // Implemented
+@Log4j2
 @Service
 public class ConvertAndSaveService {
     private final RepoURL urlRepo;
@@ -33,11 +38,9 @@ public class ConvertAndSaveService {
     }
 
 
-    // Temporary implementation
     public boolean canSave(String fullURL, long user_id) throws NoSuchFieldException {
-        if(!isValid(fullURL)) return false;
         String randomString;
-        if(hasBeenProcessedBeforeByUserId(fullURL,user_id)) return false;
+        if (hasBeenProcessedBeforeByUserId(fullURL, user_id)) return false;
         while (true) {
             randomString = reqService.autoRandomGenerator();
             if (isShortUrlUnique(randomString)) break;
@@ -54,16 +57,24 @@ public class ConvertAndSaveService {
         return true;
     }
 
-    public boolean isValid(String fullURL) {
-       return fullURL.chars().filter(c->c!=' ').count()>=1;
+    // implemented on 14.07.2020
+    // checks whether the full url which is entered is really a link.
+    public boolean isValidUrl(String fullUrl) {
+        try {
+            new URL(fullUrl).toURI();
+        } catch (Exception e) {
+            String message = String.format("The URL entered is not valid: %s ---Therefore,the following exception occurred: %s"
+                    , fullUrl, e);
+            log.error(message);
+            return false;
+        }
+        return true;
     }
 
     private String findCurrTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         return formatter.format(LocalDate.now());
     }
-
-
 }
 
 
