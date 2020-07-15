@@ -36,6 +36,13 @@ User credentials on HerokuApp(for test purposes):
 Email: random_user@mail.ru
 Password: 22
 
+User with real email:
+Email: r3xf0x@yandex.ru (password of mail: Rexyf0x0505)
+Password: 123
+
+
+
+
 
 
 
