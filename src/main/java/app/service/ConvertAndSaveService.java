@@ -6,6 +6,7 @@ import app.repo.RepoURL;
 import app.repo.ZUserRepo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
@@ -39,8 +40,10 @@ public class ConvertAndSaveService {
 
 
     public boolean canSave(String fullURL, long user_id) throws NoSuchFieldException {
+
         String randomString;
         if (hasBeenProcessedBeforeByUserId(fullURL, user_id)) return false;
+
         while (true) {
             randomString = reqService.autoRandomGenerator();
             if (isShortUrlUnique(randomString)) break;

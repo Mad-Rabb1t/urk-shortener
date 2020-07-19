@@ -25,5 +25,12 @@ public class ErrorController {
     }
 
     @GetMapping("/expired")
-    public String handleExpiredToken() { return "error-page-401";}
+    public String handleExpiredToken() {
+        return "error-page-401";
+    }
+
+    @GetMapping("/internalError")
+    public String handleAPIError() {
+        return "error-page-500";
+    }
 }

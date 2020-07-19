@@ -20,9 +20,7 @@ public class ConfirmationController {
         // Firstly, we check whether account has already been confirmed.
         // If not, we check expiration date of token and
         // forward the user to confirmed-account page.
-        return verificationService.hasAlreadyBeenConfirmed(token)
-                ? "already-confirmed" :
-                verificationService.verifyAccount(token)
-                        ? "confirmed-account" : "error-page-401";
+        return verificationService.hasAlreadyBeenConfirmed(token) ? "already-confirmed" :
+                verificationService.verifyAccount(token) ? "confirmed-account" : "error-page-401";
     }
 }
