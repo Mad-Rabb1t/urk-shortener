@@ -88,3 +88,4 @@ Improvements are the following:
 you will need to register again.
 #3--> You can not confirm already confirmed account.
 #4--> You can not login or use forgot-password function before you confirm your account.
+#5--> If any error occurs with external API, user is redirected to Custom Error Page
