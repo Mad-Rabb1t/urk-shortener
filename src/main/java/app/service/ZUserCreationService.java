@@ -1,6 +1,7 @@
 package app.service;
 
 import app.entity.ZUser;
+import app.repo.AccountVerifierRepo;
 import app.repo.ZUserRepo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,17 +12,21 @@ import java.util.Arrays;
 @Configuration
 public class ZUserCreationService {
     private final ZUserRepo repo;
+    private final AccountVerifierRepo verifierRepo;
     private final PasswordEncoder enc;
 
-    public ZUserCreationService(ZUserRepo repo, PasswordEncoder enc) {
+    public ZUserCreationService(ZUserRepo repo, AccountVerifierRepo verifierRepo, PasswordEncoder enc) {
         this.repo = repo;
+        this.verifierRepo = verifierRepo;
         this.enc = enc;
     }
 
     //Test user creation. Should be removed
     @Bean
     public void create() {
+        // resets all the information in db each time application is started
         repo.deleteAll();
+        verifierRepo.deleteAll();
         ZUser user1 = new ZUser();
         ZUser user2 = new ZUser();
         user1.email = "random_user@mail.ru";
