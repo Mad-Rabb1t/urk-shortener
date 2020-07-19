@@ -1,0 +1,16 @@
+
+ Dear Sir/Madam,
+
+ DO NOT REPLY TO THIS EMAIL!
+
+ This email has been sent to verify your newly-created account on our URL Shortener Web Application.
+Please confirm your account by clicking to the following link:
+
+%s
+
+Note: Unless you verify your account during a day, your account will expire and you will have to create
+new account again.
+Please ignore this email in case this registration was not carried out by you.
+
+Kind regards,
+IBA URL SHORTENER Team

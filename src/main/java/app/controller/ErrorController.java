@@ -23,4 +23,7 @@ public class ErrorController {
     public String handleBadRequest() {
         return "error-page-400";
     }
+
+    @GetMapping("/expired")
+    public String handleExpiredToken() { return "error-page-401";}
 }
