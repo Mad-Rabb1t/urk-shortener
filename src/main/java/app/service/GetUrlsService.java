@@ -26,7 +26,16 @@ public class GetUrlsService {
                 .getUrls().stream().sorted(Comparator.comparingLong(ShortURL::getNumOfVisits).reversed())
                 .collect(Collectors.toList());
     }
+    // gets limited amount of urls for pagination
+    public List<ShortURL> getLimitedUrlsByUserId(long id, int amount) {
+        return userRepo.findById(id).orElseThrow(NoSuchElementException::new)
+                .getUrls().stream().limit(amount).sorted(Comparator.comparingLong(ShortURL::getNumOfVisits).reversed())
+                .collect(Collectors.toList());
+    }
 
+    public int getRecordsNumber(){
+        return (int) urlRepo.count();
+    }
     // is responsible for increasing visit count each time when there is a request to /short/{id}
     private void increaseTheVisitCount(String shortUrl) {
         ShortURL obj = urlRepo.findShortURLByShortURL(shortUrl).get();

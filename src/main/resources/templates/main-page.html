@@ -92,6 +92,11 @@
             <!--                        <td>21213400 <img class="full-url-arrow" src="/images/full-url-arrow.png" alt="arrow"></td>-->
             <!--                    </tr>-->
         </table>
+        <form method="get" th:action="@{/pagination}">
+            <input type="hidden" name="page_index" th:value="${page_index}">
+            <button th:if="${page_index * 10 < record_count}" type="submit" class="square_btn" name="show" value="1">Show more...</button>
+            <button th:if="${page_index > 1}" type="submit" class="square_btn" name="show" value="-1">Show less...</button>
+        </form>
     </div>
 </main>
 </body>
