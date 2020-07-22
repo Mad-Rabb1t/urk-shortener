@@ -39,7 +39,7 @@ public class ResetPasswordService {
     public boolean isPresentEmail(String email) {
         ZUser user;
         try {
-            user = userRepo.findZUserByEmail(email).orElseThrow(NoSuchFieldError::new);
+            user = userRepo.findZUserByEmail(email).orElseThrow(NoSuchFieldException::new);
         } catch (Exception e) {
             log.error("No such user with the following email: " + email, NoSuchFieldError::new);
             return false;
