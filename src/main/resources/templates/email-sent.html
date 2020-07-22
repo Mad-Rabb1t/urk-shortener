@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -22,8 +23,11 @@
             <img class="email-sent-section-image" src="./images/login-img.png" alt="robot w/ computers">
             <div class="email-sent-section-container">
                 <h1 class="email-sent-section-container-title">Success</h1>
-                <p class="email-sent-section-container-description">
+                <p th:if="${Reset == true}" class="email-sent-section-container-description">
                     Password recovery link was sent to your email.
+                </p>
+                <p th:if="${Reset == false}" class="email-sent-section-container-description">
+                    Email verification link was sent to your email.
                 </p>
                 <a href="/login" class="login-section-container-options-link">Return to login page</a>
             </div>
