@@ -38,6 +38,7 @@
     border: 1px solid #BDBDBD;
     padding: 15px 20px;
     font-size: 30px;
+    margin-right: 10px;
 }
 
 .full-url-btn {
@@ -50,7 +51,6 @@
     background: #00298F;
     border-radius: 10px;
     padding: 15px 60px;
-    position: absolute;
     right: 0;
 }
 

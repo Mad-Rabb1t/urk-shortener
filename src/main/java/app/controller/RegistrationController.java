@@ -30,6 +30,7 @@ public class RegistrationController {
     public String postHandler(ZUser user, Model model) throws FileNotFoundException {
         model.addAttribute("correctPassword", regService.checkPasswordConfirmation(user));
         model.addAttribute("correctEmail", regService.checkEmailUniqueness(user));
-        return regService.canSave(user) ? "index" : "registration";
+        model.addAttribute("Reset", false);
+        return regService.canSave(user) ? "email-sent" : "registration";
     }
 }

@@ -27,6 +27,7 @@ public class ForgotPasswordController {
     @PostMapping()
     public String postHandler(@RequestParam String email, Model model) {
         model.addAttribute("rightEmail", reset.isPresentEmail(email));
+        model.addAttribute("Reset", true);
         return reset.canSendMessage(email) ? "email-sent" : "forgot-password";
     }
 }
