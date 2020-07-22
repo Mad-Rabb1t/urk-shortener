@@ -21,7 +21,7 @@ public class ZUserCreationService {
         this.enc = enc;
     }
 
-    //Test user creation. Should be removed
+    //Test user creation.
     @Bean
     public void create() {
         // resets all the information in db each time application is started

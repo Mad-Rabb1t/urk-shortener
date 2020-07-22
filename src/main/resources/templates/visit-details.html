@@ -6,13 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Visit details</title>
     <link rel="stylesheet" href="/css/user-profile.css">
     <link rel="stylesheet" href="/css/short-url.css">
     <link rel="stylesheet" href="/css/full-url.css">
     <link rel = "icon" href = "./images/iba-icon.png">
 </head>
-<!--The modal windows are commented down below-->
 
 <body>
 <form method="post" th:action="@{/logout}">
@@ -36,28 +35,26 @@
 <main class="full-url-bg-container">
     <img class="full-url-img" src="/images/full-url-robot.png" alt="flying robot">
     <div class="full-url-container">
-        <h2 class="full-url-title">ENTER YOUR FULL URL</h2>
-        <form name="f" th:action="@{/main}" method="post" class="full-url-input-container">
-            <input class="full-url-input" type="text" placeholder="Enter your URL" name="fullUrl">
-            <input type="submit" class="full-url-btn" value="SHORTEN">
-        </form>
-        <form method="post" th:action="@{/details}">
+        <h2 class="full-url-title"><a class="full-url-title" th:text="${curr_short_url}"></a> VISIT DETAILS</h2>
         <table class="full-url-table">
             <tbody>
             <thead>
-            <th>Creation date</th>
-            <th>Short URL</th>
-            <th>Full URL</th>
-            <th>Visit count</th>
+            <th>Visit date</th>
+            <th>IP address</th>
+            <th>Browser Info</th>
+            <th>OS</th>
+            <th>Latitude / Longitude</th>
+            <th>City / Country</th>
+            <th>Provider</th>
             </thead>
-            <tr th:each="url: ${urls}">
-                <td th:text="${url.dateOfCreation}"></td>
-                <td th:text="@{{link}/{shortUrl}(shortUrl=${url.shortURL},link=${mapping})}"></td>
-                <td style="max-width: 500px" th:text="${url.fullURL}"></td>
-                <td> <button type="submit" class="rect_btn" style="width:100%; height:100%" name="shortUrl"
-                             th:text="${url.numOfVisits}" th:value="${url.shortURL}"></button>
-<!--                    <img class="full-url-arrow" src="/images/full-url-arrow.png" alt="arrow">-->
-                </td>
+            <tr th:each="detail: ${details}">
+                <td th:text="${detail.visit_date}"></td>
+                <td th:text="${detail.ip_address}"></td>
+                <td th:text="${detail.browser_info}"></td>
+                <td th:text="${detail.os}"></td>
+                <td th:text="${detail.lat_lon}"></td>
+                <td th:text="${detail.city_country}"></td>
+                <td th:text="${detail.org}"></td>
             </tr>
             <!--                    <tr>-->
             <!--                        <td>21.06.2020</td>-->
@@ -95,12 +92,12 @@
             <!--                        <td>21213400 <img class="full-url-arrow" src="/images/full-url-arrow.png" alt="arrow"></td>-->
             <!--                    </tr>-->
         </table>
-        </form>
-        <form method="get" th:action="@{/pagination}">
-            <input type="hidden" name="page_index" th:value="${page_index}">
-            <button th:if="${page_index * 10 < record_count}" type="submit" class="square_btn" name="show" value="1">Show more...</button>
-            <button th:if="${page_index > 1}" type="submit" class="square_btn" name="show" value="-1">Show less...</button>
-        </form>
+        <a href="/main" class="square_btn">Back to main</a>
+<!--        <form method="get" th:action="@{/pagination}">-->
+<!--            <input type="hidden" name="page_index" th:value="${page_index}">-->
+<!--            <button th:if="${page_index * 10 < record_count}" type="submit" class="square_btn" name="show" value="1">Show more...</button>-->
+<!--            <button th:if="${page_index > 1}" type="submit" class="square_btn" name="show" value="-1">Show less...</button>-->
+<!--        </form>-->
     </div>
 </main>
 </body>

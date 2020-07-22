@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Objects;
-import java.util.Optional;
 
 // Done!
 @Log4j2
@@ -15,13 +14,13 @@ import java.util.Optional;
 public class RequestService {
     //This service makes a request to random.org to get random strings each time for creating unique mapping(for new full url)
     // Dealing with API exceptions
-    private ResponseEntity<String> makeRequestToExternalServer(String url, HttpHeaders headers) {
+    private ResponseEntity<String> makeRequestToExternalServer(String url, String apiName, HttpMethod method, HttpHeaders headers) {
         try {
             RestTemplate rest = new RestTemplate();
             HttpEntity<String> httpEntity = new HttpEntity<>(headers);
-            return rest.exchange(url, HttpMethod.POST, httpEntity, String.class);
+            return rest.exchange(url, method, httpEntity, String.class);
         } catch (Exception e) {
-            log.error("The following error occurred while using external API (random.org)---> " + e);
+            log.error("The following error occurred while using external API " + apiName + " ---> " + e);
             log.info("Error was thrown inside " + getClass());
             throw new RuntimeException("External API ERROR --->" + e);
         }
@@ -44,7 +43,15 @@ public class RequestService {
         //urls with an error:
 //                "https://www.random.org/strings/wrong-url";
 //        "https://www.random.org/strings/?num=100&len=1&digits=on&upperalpha=off&loweralpha=on&unique=on&format=plain&rnd=new";
-        ResponseEntity<String> response = makeRequestToExternalServer(urlWithParams, getHeadersForRandomOrg());
+        ResponseEntity<String> response = makeRequestToExternalServer(urlWithParams, "random.org",
+                HttpMethod.POST, getHeadersForRandomOrg());
         return Objects.requireNonNull(response.getBody()).trim();
     }
+
+    public String getIpDetails(String ipAddress) {
+        final String urlWithParams = String.format("http://ip-api.com/json/%s?fields=115921", ipAddress);
+        return Objects.requireNonNull(makeRequestToExternalServer(urlWithParams, "ip-api.com",
+                HttpMethod.GET, new HttpHeaders()).getBody()).trim();
+    }
 }
+

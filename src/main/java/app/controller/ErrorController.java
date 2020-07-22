@@ -2,6 +2,7 @@ package app.controller;
 
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,4 +34,11 @@ public class ErrorController {
     public String handleAPIError() {
         return "error-page-500";
     }
+
+    @ExceptionHandler(Exception.class)
+    public String handleUnexpectedException()
+    {
+        return "error-page-unexpected";
+    }
+
 }
