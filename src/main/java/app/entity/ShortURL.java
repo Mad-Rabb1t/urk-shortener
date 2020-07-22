@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Data
@@ -41,4 +42,7 @@ public class ShortURL {
 
     private ZUser user;
 
+    @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "short_url", cascade = CascadeType.ALL)
+    private Collection<VisitDetails> visitDetails;
 }

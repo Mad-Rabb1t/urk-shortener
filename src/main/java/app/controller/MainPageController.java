@@ -5,7 +5,7 @@ import app.entity.ApplicationDetails;
 import app.entity.ShortURL;
 import app.entity.ZUserDetails;
 import app.service.ConvertAndSaveService;
-import app.service.GetUrlsService;
+import app.service.UrlsService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +18,10 @@ import java.util.List;
 public class MainPageController {
 
     private final ConvertAndSaveService saveService;
-    private final GetUrlsService getService;
+    private final UrlsService getService;
     private final ApplicationDetails applicationDetails;
 
-    public MainPageController(ConvertAndSaveService service, GetUrlsService urlService, ApplicationDetails applicationDetails) {
+    public MainPageController(ConvertAndSaveService service, UrlsService urlService, ApplicationDetails applicationDetails) {
         this.saveService = service;
         this.getService = urlService;
         this.applicationDetails = applicationDetails;
@@ -41,7 +41,7 @@ public class MainPageController {
         }
         List<ShortURL> all = getService.getLimitedUrlsByUserId(user_id, index * 10); //get 10 urls from db per time
         model.addAttribute("page_index", index);
-        model.addAttribute("record_count", getService.getRecordsNumber());
+        model.addAttribute("record_count", getService.getUrlsCount(user_id));
         String shortUrl = String.format("%s/%s", applicationDetails.getRoot(), "sh");
         model.addAttribute("mapping", shortUrl);
         model.addAttribute("urls", all);
