@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -62,7 +63,7 @@ public class UrlsService {
     public void createVisitDetails(String url_id, String ipAddress, String browser_info, String os, String lat_lon, String city_country, String org) {
         ShortURL shortURL_object = urlRepo.findShortURLByShortURL(url_id)
                 .orElseThrow(RuntimeException::new);
-        String curr_date = DateTimeFormatter.ofPattern("dd/MM/YYYY").format(LocalDate.now());
+        String curr_date = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm").format(LocalDateTime.now());
 
         detailsRepo.save(VisitDetails.builder()
                 .visit_date(curr_date)
