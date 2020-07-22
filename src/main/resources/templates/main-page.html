@@ -10,28 +10,28 @@
     <link rel="stylesheet" href="/css/user-profile.css">
     <link rel="stylesheet" href="/css/short-url.css">
     <link rel="stylesheet" href="/css/full-url.css">
-    <link rel = "icon" href = "./images/iba-icon.png">
+    <link rel="icon" href="./images/iba-icon.png">
 </head>
 <!--The modal windows are commented down below-->
 
 <body>
 <form method="post" th:action="@{/logout}">
-<header class="main-header">
-    <a href="/start" class="main-header-logo"><img src="/images/iba-tech-logo-white.svg"
-                                                             alt="IBA Tech Academy"></a>
-    <div class="main-header-wrapper">
-        <div class="main-header-profile-wrapper">
-            <div class="main-header-profile-credentials">
-                <span class="main-header-username" th:text="${username}"></span>
-                <button type="submit" class="log-out-block" value="Log out">
-                    <img src="/images/log-out-icon.svg" alt="Log out">
-                    <a class="log-out-btn">Log out</a>
-                </button>
+    <header class="main-header">
+        <a href="/start" class="main-header-logo"><img src="/images/iba-tech-logo-white.svg"
+                                                       alt="IBA Tech Academy"></a>
+        <div class="main-header-wrapper">
+            <div class="main-header-profile-wrapper">
+                <div class="main-header-profile-credentials">
+                    <span class="main-header-username" th:text="${username}"></span>
+                    <button type="submit" class="log-out-block" value="Log out">
+                        <img src="/images/log-out-icon.svg" alt="Log out">
+                        <a class="log-out-btn">Log out</a>
+                    </button>
+                </div>
+                <img class="main-header-user-icon" src="/images/user-icon-with-background.svg" alt="User Icon">
             </div>
-            <img class="main-header-user-icon" src="/images/user-icon-with-background.svg" alt="User Icon">
         </div>
-    </div>
-</header>
+    </header>
 </form>
 <main class="full-url-bg-container">
     <img class="full-url-img" src="/images/full-url-robot.png" alt="flying robot">
@@ -51,8 +51,11 @@
             </thead>
             <tr th:each="url: ${urls}">
                 <td th:text="${url.dateOfCreation}"></td>
-                <td th:text="@{{link}/{shortUrl}(shortUrl=${url.shortURL},link=${mapping})}"></td>
-                <td th:text="${url.fullURL}"></td>
+                <td><a th:href="@{{link}/{shortUrl}(shortUrl=${url.shortURL},link=${mapping})}"
+                       th:text="@{{link}/{shortUrl}(shortUrl=${url.shortURL},link=${mapping})}"
+                       target="_blank"></a></td>
+                <td><a th:href="@{url.fullURL}" th:text="${url.fullURL}" target="_blank"></a>
+                </td>
                 <td th:text="${url.numOfVisits}"><img class="full-url-arrow" src="/images/full-url-arrow.png"
                                                       alt="arrow"></td>
             </tr>
