@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.io.FileNotFoundException;
+
 @Log4j2
 @Controller
 @RequestMapping("/register")
@@ -24,7 +27,7 @@ public class RegistrationController {
     }
 
     @PostMapping
-    public String postHandler(ZUser user, Model model) {
+    public String postHandler(ZUser user, Model model) throws FileNotFoundException {
         model.addAttribute("correctPassword", regService.checkPasswordConfirmation(user));
         model.addAttribute("correctEmail", regService.checkEmailUniqueness(user));
         return regService.canSave(user) ? "index" : "registration";

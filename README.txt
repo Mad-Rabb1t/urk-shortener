@@ -7,6 +7,7 @@ The following mappings have been implemented:
 /start
 /reset
 /sh
+/confirm
 *** IMPORTANT ***
 To make the application work you are required to add the following environment variables:
 For more details see: application.properties
@@ -20,6 +21,8 @@ PLEASE NOTE: You need to make the following change to the application !!!
 
 In order the application to work properly,please modify String root in the following address:
 app->entity->ApplicationDetails
+
+!!!! After you register you have to confirm your account via email sent !!!!
 
 ------------------------------------------------------------------------------------------------------------------------
 
@@ -76,3 +79,13 @@ app->entity->ApplicationDetails
 #If user enters invalid url into converter, they will get an error page and
 their request will not be processed (saved into db)
 Invalid URL is the string without protocols(http://,https://,ftp://) and proper URL syntax.
+----------------------------------------------------------------------------------------------------------
+19.07.2020       11:00  -----> Email verification has been implemented
+Improvements are the following:
+
+#1--> After you register you have to confirm your account via email sent.
+#2--> Unless you confirm it within a day, your credentials will expire and user details will be removed;
+you will need to register again.
+#3--> You can not confirm already confirmed account.
+#4--> You can not login or use forgot-password function before you confirm your account.
+#5--> If any error occurs with external API, user is redirected to Custom Error Page

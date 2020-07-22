@@ -6,6 +6,7 @@ import app.entity.ZUser;
 import app.repo.ResetPassRepo;
 import app.repo.ZUserRepo;
 import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-
+@Log4j2
 @Service
 public class ResetPasswordService {
     private final JavaMailSender sender;
@@ -34,8 +35,17 @@ public class ResetPasswordService {
         this.applicationDetails = applicationDetails;
     }
 
+    // modified
     public boolean isPresentEmail(String email) {
-        return userRepo.findZUserByEmail(email).isPresent();
+        ZUser user;
+        try {
+            user = userRepo.findZUserByEmail(email).orElseThrow(NoSuchFieldError::new);
+        } catch (Exception e) {
+            log.error("No such user with the following email: " + email, NoSuchFieldError::new);
+            return false;
+        }
+        return user.hasBeenActivated;
+
     }
 
     public boolean canResetToken(String token) {

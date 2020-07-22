@@ -42,8 +42,9 @@ public class ZUserDetails implements UserDetails {
         return true;
     }
 
+    // Unless user account is confirmed with the email, this user can not login.
     @Override
     public boolean isEnabled() {
-        return true;
+        return user.hasBeenActivated;
     }
 }
