@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 @Value
 public class ApplicationDetails {
-    String root = String.format("http://localhost:%s", System.getenv("PORT"));
-//            "https://iba-short-url.herokuapp.com";
+    String root = "https://cut-ly.herokuapp.com";
+//          String.format("http://localhost:%s", System.getenv("PORT"));  
 }
