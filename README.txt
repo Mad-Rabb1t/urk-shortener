@@ -32,8 +32,7 @@ Now you can enter your url(/main) and convert your url to shorter one.
 (url which has not been added to the system) **
 ** You can reset your password if you have an access to your registration e-mail **
 
-GitHub link to Application: https://github.com/Mad-Rabb1t/url-shortener
-Link to HerokuApp: https://iba-short-url.herokuapp.com/login
+Link to HerokuApp: https://cut-ly.herokuapp.com
 
 User credentials on HerokuApp(for test purposes):
 Email: random_user@mail.ru
@@ -44,7 +43,7 @@ Email: r3xf0x@yandex.ru (password of mail: Rexyf0x0505)
 Password: 123
 
 
-
+In collaboration with [Turkan](https://github.com/iturkan6) and [Eltaj](https://github.com/ELTAJ-R)
 
 
 
