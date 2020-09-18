@@ -43,8 +43,6 @@ Email: r3xf0x@yandex.ru (password of mail: Rexyf0x0505)
 Password: 123
 
 
-In collaboration with [Turkan](https://github.com/iturkan6) and [Eltaj](https://github.com/ELTAJ-R)
-
 
 
 
